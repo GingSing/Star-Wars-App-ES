@@ -18,8 +18,10 @@ const CharacterList = ({ characters }) => {
 const CharacterItem = ({ characterURL }) => {
   const history = useHistory();
   const { data: characterInfo } = useSWR(characterURL, fetcher);
+  console.log(characterInfo);
   return (
     <li
+      className="clickable"
       onClick={() =>
         characterInfo &&
         history.push(`/characters/${getIdFromURL(characterInfo.url)}`)

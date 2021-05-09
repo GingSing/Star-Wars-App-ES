@@ -20,6 +20,7 @@ const PlanetItem = ({ planetURL }) => {
   const { data: planetInfo } = useSWR(planetURL, fetcher);
   return (
     <li
+      className="clickable"
       onClick={() =>
         planetInfo && history.push(`/planets/${getIdFromURL(planetInfo.url)}`)
       }

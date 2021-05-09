@@ -2,14 +2,11 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
 import { fetcher } from "../helpers";
-import { CharacterList, FilmList, Page } from "../components";
+import { CharacterList, FilmList, LabeledComponent, Page } from "../components";
 
 const Planet = () => {
   const { id } = useParams();
-  const { data: planetInfo, error } = useSWR(
-    `https://swapi.dev/api/planets/${id}/`,
-    fetcher
-  );
+  const { data: planetInfo, error } = useSWR(`/planets/${id}/`, fetcher);
   return (
     <Page loaded={planetInfo} error={error}>
       {planetInfo &&
@@ -23,24 +20,21 @@ const Planet = () => {
               );
             case "films":
               return (
-                <div key={key}>
-                  <h3>Films</h3>
+                <LabeledComponent key={key} title={item}>
                   <FilmList films={planetInfo[item]} />
-                </div>
+                </LabeledComponent>
               );
             case "residents":
               return (
-                <div key={key}>
-                  <h3>Residents</h3>
+                <LabeledComponent key={key} title={item}>
                   <CharacterList characters={planetInfo[item]} />
-                </div>
+                </LabeledComponent>
               );
             default:
               return (
-                <div key={key}>
-                  <h3>{item}</h3>
+                <LabeledComponent key={key} title={item}>
                   <span>{planetInfo[item]}</span>
-                </div>
+                </LabeledComponent>
               );
           }
         })}

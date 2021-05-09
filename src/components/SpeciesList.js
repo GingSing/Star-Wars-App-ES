@@ -20,6 +20,7 @@ const SpeciesItem = ({ speciesURL }) => {
   const { data: speciesInfo } = useSWR(speciesURL, fetcher);
   return (
     <li
+      className="clickable"
       onClick={() =>
         speciesInfo && history.push(`/species/${getIdFromURL(speciesInfo.url)}`)
       }

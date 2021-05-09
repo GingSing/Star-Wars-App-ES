@@ -20,6 +20,7 @@ const VehicleItem = ({ vehicleURL }) => {
   const { data: vehicleInfo } = useSWR(vehicleURL, fetcher);
   return (
     <li
+      className="clickable"
       onClick={() =>
         vehicleInfo &&
         history.push(`/vehicles/${getIdFromURL(vehicleInfo.url)}`)

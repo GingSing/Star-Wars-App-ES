@@ -2,12 +2,13 @@ import React, { useState, useEffect, useCallback } from "react";
 import useSWR from "swr";
 import Fuse from "fuse.js";
 import { useHistory } from "react-router-dom";
+import { LabeledComponent, Page } from "../components";
 import { fetcher, getIdFromURL } from "../helpers";
 
 const Films = () => {
   const [filteredFilms, setFilteredFilms] = useState();
   const history = useHistory();
-  const { data: films } = useSWR("https://swapi.dev/api/films/", fetcher);
+  const { data: films, error } = useSWR("/films/", fetcher);
 
   const handleChange = useCallback(
     (e) => {
@@ -32,10 +33,10 @@ const Films = () => {
   }, [films]);
 
   return (
-    <div className="films">
+    <Page loaded={films} error={error} removeButtons>
       <h1 className="title">Star Wars App</h1>
       <input placeholder="Search..." onChange={handleChange} />
-      {filteredFilms ? (
+      {filteredFilms &&
         filteredFilms.map((filteredData, key) => {
           //get film id (episode id is not film id)
           //need this check for fuse.js to work properly
@@ -43,17 +44,16 @@ const Films = () => {
           return (
             <div
               key={key}
+              className="clickable"
               onClick={() => history.push(`/films/${getIdFromURL(data.url)}`)}
             >
-              <h3>{data.title}</h3>
-              <p>{data.opening_crawl}</p>
+              <LabeledComponent title={data.title}>
+                <p>{data.opening_crawl}</p>
+              </LabeledComponent>
             </div>
           );
-        })
-      ) : (
-        <h3>Loading...</h3>
-      )}
-    </div>
+        })}
+    </Page>
   );
 };
 

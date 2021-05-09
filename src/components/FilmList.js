@@ -18,6 +18,7 @@ const FilmItem = ({ filmURL }) => {
   const { data: filmInfo } = useSWR(filmURL, fetcher);
   return (
     <li
+      className="clickable"
       onClick={() =>
         filmInfo && history.push(`/films/${getIdFromURL(filmInfo.url)}`)
       }

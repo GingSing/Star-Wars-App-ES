@@ -31,6 +31,18 @@ input {
   text-align: center;
 }
 
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  transform: scaleX(1.01);
+}
+
+.labeled_component {
+  margin: 0.5em 0;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

@@ -1,6 +1,10 @@
 // wrapper for fetch
 const fetcher = (url) => {
-  return fetch(url).then((res) => res.json());
+  const options = {};
+
+  return fetch(url, options)
+    .then((res) => res.json())
+    .catch((err) => console.log("Fetcher error:" + err));
 };
 
 // used to retrieve id from url

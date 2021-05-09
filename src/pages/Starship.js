@@ -1,15 +1,12 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
-import { fetcher, formatTitle } from "../helpers";
-import { CharacterList, FilmList, Page } from "../components";
+import { fetcher } from "../helpers";
+import { CharacterList, FilmList, LabeledComponent, Page } from "../components";
 
 const Starship = () => {
   const { id } = useParams();
-  const { data: starshipInfo, error } = useSWR(
-    `https://swapi.dev/api/starships/${id}/`,
-    fetcher
-  );
+  const { data: starshipInfo, error } = useSWR(`/starships/${id}/`, fetcher);
 
   return (
     <Page loaded={starshipInfo} error={error}>
@@ -24,24 +21,21 @@ const Starship = () => {
               );
             case "films":
               return (
-                <div key={key}>
-                  <h3>Films</h3>
+                <LabeledComponent key={key} title={item}>
                   <FilmList films={starshipInfo[item]} />
-                </div>
+                </LabeledComponent>
               );
             case "pilots":
               return (
-                <div key={key}>
-                  <h3>Residents</h3>
+                <LabeledComponent key={key} title={item}>
                   <CharacterList characters={starshipInfo[item]} />
-                </div>
+                </LabeledComponent>
               );
             default:
               return (
-                <div key={key}>
-                  <h3>{formatTitle(item)}</h3>
+                <LabeledComponent key={key} title={item}>
                   <span>{starshipInfo[item]}</span>
-                </div>
+                </LabeledComponent>
               );
           }
         })}

@@ -1,15 +1,12 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
-import { fetcher, formatTitle } from "../helpers";
-import { CharacterList, FilmList, Page } from "../components";
+import { fetcher } from "../helpers";
+import { CharacterList, FilmList, Page, LabeledComponent } from "../components";
 
 const Vehicle = () => {
   const { id } = useParams();
-  const { data: vehicleInfo, error } = useSWR(
-    `https://swapi.dev/api/vehicles/${id}/`,
-    fetcher
-  );
+  const { data: vehicleInfo, error } = useSWR(`/vehicles/${id}/`, fetcher);
   return (
     <Page loaded={vehicleInfo} error={error}>
       {vehicleInfo &&
@@ -24,24 +21,21 @@ const Vehicle = () => {
 
             case "films":
               return (
-                <div key={key}>
-                  <h3>Films</h3>
+                <LabeledComponent key={key} title={item}>
                   <FilmList films={vehicleInfo[item]} />
-                </div>
+                </LabeledComponent>
               );
             case "pilots":
               return (
-                <div key={key}>
-                  <h3>Residents</h3>
+                <LabeledComponent key={key} title={item}>
                   <CharacterList characters={vehicleInfo[item]} />
-                </div>
+                </LabeledComponent>
               );
             default:
               return (
-                <div key={key}>
-                  <h3>{formatTitle(item)}</h3>
+                <LabeledComponent key={key} title={item}>
                   <span>{vehicleInfo[item]}</span>
-                </div>
+                </LabeledComponent>
               );
           }
         })}

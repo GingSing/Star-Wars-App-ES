@@ -20,6 +20,7 @@ const StarshipItem = ({ starshipURL }) => {
   const { data: starshipInfo } = useSWR(starshipURL, fetcher);
   return (
     <li
+      className="clickable"
       onClick={() =>
         starshipInfo &&
         history.push(`/starships/${getIdFromURL(starshipInfo.url)}`)

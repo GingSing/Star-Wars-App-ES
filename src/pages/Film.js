@@ -13,10 +13,7 @@ import {
 
 const Film = () => {
   const { id } = useParams();
-  const { data: filmInfo, error } = useSWR(
-    `https://swapi.dev/api/films/${id}/`,
-    fetcher
-  );
+  const { data: filmInfo, error } = useSWR(`/films/${id}/`, fetcher);
   return (
     <Page loaded={filmInfo} error={error}>
       {filmInfo &&
