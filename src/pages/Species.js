@@ -13,6 +13,7 @@ import {
 const Species = () => {
   const { id } = useParams();
   const { data: speciesInfo, error } = useSWR(`/species/${id}/`, fetcher);
+
   return (
     <Page loaded={speciesInfo} error={error}>
       {speciesInfo &&
@@ -20,24 +21,28 @@ const Species = () => {
           switch (item) {
             case "name":
               return <h2 className="title">{speciesInfo[item]}</h2>;
+
             case "homeworld":
               return (
                 <LabeledComponent key={key} title={item}>
                   <PlanetList planets={[speciesInfo[item]]} />
                 </LabeledComponent>
               );
+
             case "people":
               return (
                 <LabeledComponent key={key} title={item}>
                   <CharacterList characters={speciesInfo[item]} />
                 </LabeledComponent>
               );
+
             case "films":
               return (
                 <LabeledComponent key={key} title={item}>
                   <FilmList films={speciesInfo[item]} />
                 </LabeledComponent>
               );
+
             default:
               return (
                 <LabeledComponent key={key} title={item}>

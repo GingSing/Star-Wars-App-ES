@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import useSWR from "swr";
-import { fetcher, getIdFromURL } from "../helpers";
+import { fetcher, getIdFromURL } from "../../helpers";
 import PropTypes from "prop-types";
 
 const SpeciesList = ({ species }) => {
@@ -18,6 +18,7 @@ const SpeciesList = ({ species }) => {
 const SpeciesItem = ({ speciesURL }) => {
   const history = useHistory();
   const { data: speciesInfo } = useSWR(speciesURL, fetcher);
+
   return (
     <li
       className="clickable"

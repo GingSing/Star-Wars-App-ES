@@ -1,7 +1,7 @@
 import React from "react";
 import useSWR from "swr";
 import { useHistory } from "react-router-dom";
-import { fetcher, getIdFromURL } from "../helpers";
+import { fetcher, getIdFromURL } from "../../helpers";
 import PropTypes from "prop-types";
 
 const CharacterList = ({ characters }) => {
@@ -18,7 +18,7 @@ const CharacterList = ({ characters }) => {
 const CharacterItem = ({ characterURL }) => {
   const history = useHistory();
   const { data: characterInfo } = useSWR(characterURL, fetcher);
-  console.log(characterInfo);
+
   return (
     <li
       className="clickable"

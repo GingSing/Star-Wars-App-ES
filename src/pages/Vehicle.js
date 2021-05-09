@@ -7,6 +7,7 @@ import { CharacterList, FilmList, Page, LabeledComponent } from "../components";
 const Vehicle = () => {
   const { id } = useParams();
   const { data: vehicleInfo, error } = useSWR(`/vehicles/${id}/`, fetcher);
+
   return (
     <Page loaded={vehicleInfo} error={error}>
       {vehicleInfo &&
@@ -25,12 +26,14 @@ const Vehicle = () => {
                   <FilmList films={vehicleInfo[item]} />
                 </LabeledComponent>
               );
+
             case "pilots":
               return (
                 <LabeledComponent key={key} title={item}>
                   <CharacterList characters={vehicleInfo[item]} />
                 </LabeledComponent>
               );
+
             default:
               return (
                 <LabeledComponent key={key} title={item}>

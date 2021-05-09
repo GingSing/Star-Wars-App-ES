@@ -1,7 +1,7 @@
 import React from "react";
 import useSWR from "swr";
 import { useHistory } from "react-router-dom";
-import { fetcher, getIdFromURL } from "../helpers";
+import { fetcher, getIdFromURL } from "../../helpers";
 import PropTypes from "prop-types";
 
 const PlanetList = ({ planets }) => {
@@ -18,6 +18,7 @@ const PlanetList = ({ planets }) => {
 const PlanetItem = ({ planetURL }) => {
   const history = useHistory();
   const { data: planetInfo } = useSWR(planetURL, fetcher);
+
   return (
     <li
       className="clickable"

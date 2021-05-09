@@ -19,18 +19,21 @@ const Starship = () => {
                   {starshipInfo[item]}
                 </h2>
               );
+
             case "films":
               return (
                 <LabeledComponent key={key} title={item}>
                   <FilmList films={starshipInfo[item]} />
                 </LabeledComponent>
               );
+
             case "pilots":
               return (
                 <LabeledComponent key={key} title={item}>
                   <CharacterList characters={starshipInfo[item]} />
                 </LabeledComponent>
               );
+
             default:
               return (
                 <LabeledComponent key={key} title={item}>

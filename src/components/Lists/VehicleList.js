@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import useSWR from "swr";
-import { fetcher, getIdFromURL } from "../helpers";
+import { fetcher, getIdFromURL } from "../../helpers";
 import PropTypes from "prop-types";
 
 const VehicleList = ({ vehicles }) => {
@@ -18,6 +18,7 @@ const VehicleList = ({ vehicles }) => {
 const VehicleItem = ({ vehicleURL }) => {
   const history = useHistory();
   const { data: vehicleInfo } = useSWR(vehicleURL, fetcher);
+
   return (
     <li
       className="clickable"

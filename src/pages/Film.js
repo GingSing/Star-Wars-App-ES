@@ -9,11 +9,13 @@ import {
   SpeciesList,
   PlanetList,
   Page,
+  LabeledComponent,
 } from "../components";
 
 const Film = () => {
   const { id } = useParams();
   const { data: filmInfo, error } = useSWR(`/films/${id}/`, fetcher);
+
   return (
     <Page loaded={filmInfo} error={error}>
       {filmInfo &&
@@ -28,45 +30,44 @@ const Film = () => {
 
             case "characters":
               return (
-                <div key={key}>
-                  <h3>Characters</h3>
+                <LabeledComponent key={key} title={item}>
                   <CharacterList characters={filmInfo[item]} />
-                </div>
+                </LabeledComponent>
               );
+
             case "planets":
               return (
-                <div key={key}>
-                  <h3>Planets</h3>
+                <LabeledComponent key={key} title={item}>
                   <PlanetList planets={filmInfo[item]} />
-                </div>
+                </LabeledComponent>
               );
+
             case "starships":
               return (
-                <div key={key}>
-                  <h3>Starships</h3>
+                <LabeledComponent key={key} title={item}>
                   <StarshipList starships={filmInfo[item]} />
-                </div>
+                </LabeledComponent>
               );
+
             case "vehicles":
               return (
-                <div key={key}>
-                  <h3>Vehicles</h3>
+                <LabeledComponent key={key} title={item}>
                   <VehicleList vehicles={filmInfo[item]} />
-                </div>
+                </LabeledComponent>
               );
+
             case "species":
               return (
-                <div key={key}>
-                  <h3>Species</h3>
+                <LabeledComponent key={key} title={item}>
                   <SpeciesList species={filmInfo[item]} />
-                </div>
+                </LabeledComponent>
               );
+
             default:
               return (
-                <div key={key}>
-                  <h3>{formatTitle(item)}</h3>
+                <LabeledComponent key={key} title={item}>
                   <span>{filmInfo[item]}</span>
-                </div>
+                </LabeledComponent>
               );
           }
         })}

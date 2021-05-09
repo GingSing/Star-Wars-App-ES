@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import useSWR from "swr";
-import { fetcher, getIdFromURL } from "../helpers";
+import { fetcher, getIdFromURL } from "../../helpers";
 import PropTypes from "prop-types";
 
 const FilmList = ({ films }) => {
@@ -16,6 +16,7 @@ const FilmList = ({ films }) => {
 const FilmItem = ({ filmURL }) => {
   const history = useHistory();
   const { data: filmInfo } = useSWR(filmURL, fetcher);
+
   return (
     <li
       className="clickable"

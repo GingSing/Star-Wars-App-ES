@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import useSWR from "swr";
-import { fetcher, getIdFromURL } from "../helpers";
+import { fetcher, getIdFromURL } from "../../helpers";
 import PropTypes from "prop-types";
 
 const StarshipList = ({ starships }) => {
@@ -18,6 +18,7 @@ const StarshipList = ({ starships }) => {
 const StarshipItem = ({ starshipURL }) => {
   const history = useHistory();
   const { data: starshipInfo } = useSWR(starshipURL, fetcher);
+
   return (
     <li
       className="clickable"

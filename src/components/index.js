@@ -1,19 +1,21 @@
-import CharacterList from "./CharacterList";
-import VehicleList from "./VehicleList";
-import StarshipList from "./StarshipList";
-import PlanetList from "./PlanetList";
-import SpeciesList from "./SpeciesList";
-import FilmList from "./FilmList";
+import {
+  CharacterList,
+  FilmList,
+  PlanetList,
+  SpeciesList,
+  StarshipList,
+  VehicleList,
+} from "./Lists";
 import Page from "./Page";
 import LabeledComponent from "./LabeledComponent";
 
 export {
   CharacterList,
-  VehicleList,
-  StarshipList,
+  FilmList,
   PlanetList,
   SpeciesList,
-  FilmList,
+  StarshipList,
+  VehicleList,
   LabeledComponent,
   Page,
 };

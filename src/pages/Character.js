@@ -15,6 +15,7 @@ import {
 const Character = () => {
   const { id } = useParams();
   const { data: characterInfo, error } = useSWR(`/people/${id}/`, fetcher);
+
   return (
     <Page loaded={characterInfo} error={error}>
       {characterInfo &&
@@ -26,36 +27,42 @@ const Character = () => {
                   {characterInfo[item]}
                 </h2>
               );
+
             case "films":
               return (
                 <LabeledComponent key={key} title={item}>
                   <FilmList films={characterInfo[item]} />
                 </LabeledComponent>
               );
+
             case "homeworld":
               return (
                 <LabeledComponent key={key} title={item}>
                   <PlanetList planets={[characterInfo[item]]} />
                 </LabeledComponent>
               );
+
             case "species":
               return (
                 <LabeledComponent key={key} title={item}>
                   <SpeciesList species={characterInfo[item]} />
                 </LabeledComponent>
               );
+
             case "starships":
               return (
                 <LabeledComponent key={key} title={item}>
                   <StarshipList starships={characterInfo[item]} />
                 </LabeledComponent>
               );
+
             case "vehicles":
               return (
                 <LabeledComponent key={key} title={item}>
                   <VehicleList vehicles={characterInfo[item]} />
                 </LabeledComponent>
               );
+
             default:
               return (
                 <LabeledComponent key={key} title={item}>
