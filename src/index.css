@@ -33,6 +33,7 @@ input {
 
 .clickable {
   cursor: pointer;
+  width: fit-content;
 }
 
 .clickable:hover {

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { formatTitle } from "../helpers";
 
 const LabeledComponent = ({ title, children }) => {
@@ -8,6 +9,11 @@ const LabeledComponent = ({ title, children }) => {
       {children}
     </div>
   );
+};
+
+LabeledComponent.propTypes = {
+  title: PropTypes.string,
+  children: PropTypes.node,
 };
 
 export default LabeledComponent;
