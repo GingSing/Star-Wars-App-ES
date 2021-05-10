@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
-import { fetcher, formatTitle } from "../helpers";
+import { fetcher } from "../helpers";
 import {
   CharacterList,
   VehicleList,
